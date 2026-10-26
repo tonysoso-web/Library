@@ -1,0 +1,25 @@
+UNILAK LIBRARY SYSTEM - DATABASE/ERROR FIX
+Date: 09 September 2026
+
+Main corrections in this build:
+1. NFC attendance check-in no longer fails when attendance.recorded_by is missing.
+2. Attendance report no longer fails on the recorded_by join.
+3. Book return no longer fails when book_lending.recorded_by/returned_by are missing.
+4. System Administrator report now correctly treats "All Campuses" as all campuses instead of campus=superadmin.
+5. Existing databases are repaired automatically from config/db.php without deleting current data.
+6. Fresh installs use the corrected library_system.sql schema.
+7. Student photo support is included in the students table.
+8. Book/computer lending fields (item_type, computer_code, computer_type) are included in the database schema.
+9. Return page filtering JavaScript no longer depends on an undefined global event object.
+10. A database compatibility check page is available at scripts/database_repair.php for the System Administrator.
+
+INSTALLATION
+- Back up your current LIBLARY folder and database first.
+- Replace the LIBLARY project folder with this corrected folder.
+- Keep your existing library_system database if you want to preserve data.
+- Open the system normally. The database bootstrap will add only missing columns; it does not drop current data.
+- If desired, log in as System Administrator and open Librarians -> Database Compatibility Check to confirm required columns show OK.
+
+Fresh installation:
+- Import library_system.sql into a database named library_system.
+- Keep the AMPPS database credentials in config/db.php aligned with your local setup.
